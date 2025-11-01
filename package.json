@@ -1,0 +1,44 @@
+{
+  "name": "amfe-tool",
+  "version": "1.0.0",
+  "description": "AMFE Tool - Auditoría Médica Facilitada con Evidencias",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "pnpm --filter web build",
+    "dev": "pnpm --filter web dev",
+    "test": "pnpm --filter web test",
+    "test:e2e": "pnpm --filter web test:e2e",
+    "lint": "pnpm --filter web lint",
+    "lint:fix": "pnpm --filter web lint:fix",
+    "type-check": "pnpm --filter web type-check",
+    "format": "prettier --write .",
+    "clean": "pnpm --filter web clean && rm -rf node_modules",
+    "prepare": "husky install || true"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.17.0",
+    "pnpm": ">=8.15.0"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "keywords": [
+    "medical",
+    "audit",
+    "evidence",
+    "typescript",
+    "react",
+    "supabase"
+  ],
+  "author": "AMFE Team",
+  "license": "MIT"
+}

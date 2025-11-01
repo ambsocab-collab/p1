@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "declaration": true,
+    "declarationMap": true,
+    "composite": true,
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@amfe/shared": ["packages/shared/src"],
+      "@amfe/shared/*": ["packages/shared/src/*"],
+      "@amfe/ui": ["packages/ui/src"],
+      "@amfe/ui/*": ["packages/ui/src/*"],
+      "@/*": ["apps/web/src"],
+      "@/*/*": ["apps/web/src/*"]
+    }
+  },
+  "references": [
+    { "path": "./apps/web" },
+    { "path": "./packages/shared" },
+    { "path": "./packages/ui" }
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".next",
+    "coverage",
+    ".tmp"
+  ]
+}
