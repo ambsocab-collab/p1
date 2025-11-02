@@ -21,9 +21,7 @@
     }
   },
   "include": [
-    "src",
-    "tests",
-    "vite.config.ts"
+    "src"
   ],
   "exclude": [
     "node_modules",

@@ -10,6 +10,9 @@ interface EnvVar {
 }
 
 const envVars: EnvVar[] = [
+  // ===========================================
+  // SUPABASE CONFIGURATION
+  // ===========================================
   {
     name: 'VITE_SUPABASE_URL',
     required: true,
@@ -31,6 +34,10 @@ const envVars: EnvVar[] = [
       return value.length > 100 && value.startsWith('eyJ')
     }
   },
+
+  // ===========================================
+  // APPLICATION CONFIGURATION
+  // ===========================================
   {
     name: 'VITE_APP_NAME',
     required: true
@@ -41,16 +48,150 @@ const envVars: EnvVar[] = [
     validator: (value) => /^\d+\.\d+\.\d+/.test(value)
   },
   {
+    name: 'VITE_APP_URL',
+    required: false,
+    validator: (value) => {
+      try {
+        new URL(value)
+        return true
+      } catch {
+        return false
+      }
+    }
+  },
+  {
+    name: 'VITE_APP_SUPPORT_EMAIL',
+    required: false,
+    validator: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+  },
+
+  // ===========================================
+  // AUTHENTICATION CONFIGURATION
+  // ===========================================
+  {
     name: 'VITE_DISABLE_AUTH',
     required: false
   },
+  {
+    name: 'VITE_ENABLE_ANONYMOUS_AUTH',
+    required: false
+  },
+  {
+    name: 'VITE_AUTH_SESSION_TIMEOUT',
+    required: false,
+    validator: (value) => {
+      const num = parseInt(value)
+      return !isNaN(num) && num > 0
+    }
+  },
+  {
+    name: 'VITE_ENABLE_MAGIC_LINK',
+    required: false
+  },
+
+  // ===========================================
+  // FEATURE FLAGS
+  // ===========================================
   {
     name: 'VITE_ENABLE_ANALYTICS',
     required: false
   },
   {
+    name: 'VITE_ENABLE_ERROR_REPORTING',
+    required: false
+  },
+  {
+    name: 'VITE_ENABLE_PERFORMANCE_MONITORING',
+    required: false
+  },
+  {
+    name: 'VITE_ENABLE_DEBUG_MODE',
+    required: false
+  },
+
+  // ===========================================
+  // DEVELOPMENT CONFIGURATION
+  // ===========================================
+  {
     name: 'VITE_DEV_MODE',
     required: false
+  },
+  {
+    name: 'VITE_LOG_LEVEL',
+    required: false,
+    validator: (value) => ['error', 'warn', 'info', 'debug'].includes(value)
+  },
+  {
+    name: 'VITE_ENABLE_MOCK_DATA',
+    required: false
+  },
+  {
+    name: 'VITE_ENABLE_API_MOCKING',
+    required: false
+  },
+
+  // ===========================================
+  // FILE UPLOAD CONFIGURATION
+  // ===========================================
+  {
+    name: 'VITE_MAX_FILE_SIZE',
+    required: false,
+    validator: (value) => {
+      const num = parseInt(value)
+      return !isNaN(num) && num > 0
+    }
+  },
+  {
+    name: 'VITE_ALLOWED_FILE_TYPES',
+    required: false
+  },
+  {
+    name: 'VITE_MAX_FILES_PER_UPLOAD',
+    required: false,
+    validator: (value) => {
+      const num = parseInt(value)
+      return !isNaN(num) && num > 0
+    }
+  },
+
+  // ===========================================
+  // CACHE CONFIGURATION
+  // ===========================================
+  {
+    name: 'VITE_ENABLE_CACHE',
+    required: false
+  },
+  {
+    name: 'VITE_CACHE_TTL',
+    required: false,
+    validator: (value) => {
+      const num = parseInt(value)
+      return !isNaN(num) && num > 0
+    }
+  },
+
+  // ===========================================
+  // SECURITY CONFIGURATION
+  // ===========================================
+  {
+    name: 'VITE_ENABLE_RATE_LIMITING',
+    required: false
+  },
+  {
+    name: 'VITE_RATE_LIMIT_REQUESTS',
+    required: false,
+    validator: (value) => {
+      const num = parseInt(value)
+      return !isNaN(num) && num > 0
+    }
+  },
+  {
+    name: 'VITE_RATE_LIMIT_WINDOW',
+    required: false,
+    validator: (value) => {
+      const num = parseInt(value)
+      return !isNaN(num) && num > 0
+    }
   }
 ]
 

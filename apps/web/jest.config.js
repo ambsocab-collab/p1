@@ -1,8 +1,8 @@
 export default {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['./tests/setup.ts'],
-  moduleNameMapping: {
+  setupFilesAfterEnv: ['./tests/setup.tsx'],
+  moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@amfe/shared/(.*)$': '<rootDir>/../../packages/shared/src/$1',
     '^@amfe/ui/(.*)$': '<rootDir>/../../packages/ui/src/$1',

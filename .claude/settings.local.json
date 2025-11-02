@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(nul)",
+      "Bash(mkdir:*)",
+      "Bash(md-tree explode:*)",
+      "Bash(dir:*)",
+      "Bash(npm test)",
+      "Bash(pnpm test:*)",
+      "Bash(npx jest:*)",
+      "Bash(npm install:*)",
+      "Bash(curl:*)",
+      "Bash(tar:*)",
+      "Bash(rm:*)",
+      "Bash(supabase:*)",
+      "Bash(npm run dev)",
+      "Bash(npm run type-check:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

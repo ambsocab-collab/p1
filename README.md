@@ -1,173 +1,183 @@
-# AMFE Tool - Auditoría Médica Facilitada con Evidencias
+# Supabase CLI
 
-Herramienta para facilitar auditorías médicas con gestión integral de evidencias.
+[![Coverage Status](https://coveralls.io/repos/github/supabase/cli/badge.svg?branch=main)](https://coveralls.io/github/supabase/cli?branch=main) [![Bitbucket Pipelines](https://img.shields.io/bitbucket/pipelines/supabase-cli/setup-cli/master?style=flat-square&label=Bitbucket%20Canary)](https://bitbucket.org/supabase-cli/setup-cli/pipelines) [![Gitlab Pipeline Status](https://img.shields.io/gitlab/pipeline-status/sweatybridge%2Fsetup-cli?label=Gitlab%20Canary)
+](https://gitlab.com/sweatybridge/setup-cli/-/pipelines)
 
-## 🚀 Quick Start
+[Supabase](https://supabase.io) is an open source Firebase alternative. We're building the features of Firebase using enterprise-grade open source tools.
 
-### Prerequisites
+This repository contains all the functionality for Supabase CLI.
 
-- Node.js 18.17.0 or higher
-- pnpm 8.15.0 or higher
+- [x] Running Supabase locally
+- [x] Managing database migrations
+- [x] Creating and deploying Supabase Functions
+- [x] Generating types directly from your database schema
+- [x] Making authenticated HTTP requests to [Management API](https://supabase.com/docs/reference/api/introduction)
 
-### Installation
+## Getting started
 
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd p1
-```
+### Install the CLI
 
-2. Install dependencies:
-```bash
-pnpm install
-```
-
-3. Copy environment variables:
-```bash
-cp .env.example apps/web/.env.local
-```
-
-4. Update `apps/web/.env.local` with your Supabase configuration:
-   - Get your Supabase URL and anon key from [Supabase Dashboard](https://app.supabase.com)
-
-5. Start development server:
-```bash
-pnpm dev
-```
-
-## 📁 Project Structure
-
-This is a monorepo using pnpm workspaces:
-
-```
-p1/
-├── apps/
-│   └── web/           # React frontend application
-├── packages/
-│   ├── shared/        # Shared types and utilities
-│   └── ui/           # Shared UI components
-├── docs/             # Documentation
-├── .github/          # GitHub Actions workflows
-└── infrastructure/   # Infrastructure as Code
-```
-
-## 🛠️ Tech Stack
-
-- **Frontend**: React 18.2+, TypeScript 5.0+, Tailwind CSS 3.3+
-- **Build Tool**: Vite 5.0+
-- **State Management**: Zustand
-- **Backend**: Supabase (PostgreSQL, Auth, Storage)
-- **Testing**: Jest + React Testing Library + Playwright
-- **Deployment**: Vercel
-- **Package Manager**: pnpm
-
-## 📝 Available Scripts
-
-### Root Level Scripts
-
-- `pnpm dev` - Start development server
-- `pnpm build` - Build for production
-- `pnpm test` - Run unit tests
-- `pnpm test:e2e` - Run E2E tests
-- `pnpm lint` - Run ESLint
-- `pnpm lint:fix` - Fix ESLint issues
-- `pnpm type-check` - Run TypeScript type checking
-- `pnpm format` - Format code with Prettier
-- `pnpm clean` - Clean build artifacts and node_modules
-
-### App Level Scripts (run from apps/web/)
-
-- `pnpm dev` - Start development server on port 3000
-- `pnpm build` - Build application
-- `pnpm preview` - Preview production build
-- `pnpm test` - Run unit tests with coverage
-- `pnpm test:watch` - Run tests in watch mode
-- `pnpm test:e2e` - Run Playwright E2E tests
-
-## 🧪 Testing
-
-### Unit Tests
-```bash
-# Run all tests
-pnpm test
-
-# Run in watch mode
-pnpm test:watch
-
-# Run with coverage
-pnpm test:coverage
-```
-
-### E2E Tests
-```bash
-# Install Playwright browsers (first time only)
-pnpm exec playwright install
-
-# Run E2E tests
-pnpm test:e2e
-
-# Run E2E tests in UI mode
-pnpm exec playwright test --ui
-```
-
-## 🚀 Deployment
-
-### Automatic Deployment
-
-Deployment to Vercel is automatic via GitHub Actions when pushing to the `main` branch.
-
-### Manual Deployment
-
-1. Install Vercel CLI:
-```bash
-pnpm add -g vercel
-```
-
-2. Deploy:
-```bash
-vercel --prod
-```
-
-## 🔧 Environment Variables
-
-Create a `apps/web/.env.local` file with the following variables:
+Available via [NPM](https://www.npmjs.com) as dev dependency. To install:
 
 ```bash
-# Supabase Configuration
-VITE_SUPABASE_URL=your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key
-
-# App Configuration
-VITE_APP_NAME=AMFE Tool
-VITE_APP_VERSION=1.0.0
-
-# Feature Flags
-VITE_DISABLE_AUTH=false
-VITE_ENABLE_ANALYTICS=false
+npm i supabase --save-dev
 ```
 
-## 📊 Code Quality
+To install the beta release channel:
 
-This project uses:
+```bash
+npm i supabase@beta --save-dev
+```
 
-- **ESLint** - Linting and code quality
-- **Prettier** - Code formatting
-- **TypeScript** - Static typing
-- **Husky** - Git hooks (pre-commit linting)
-- **lint-staged** - Run linters on staged files
+When installing with yarn 4, you need to disable experimental fetch with the following nodejs config.
 
-## 🤝 Contributing
+```
+NODE_OPTIONS=--no-experimental-fetch yarn add supabase
+```
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/my-feature`
-3. Commit changes: `git commit -am 'Add some feature'`
-4. Push to branch: `git push origin feature/my-feature`
-5. Submit a pull request
+> **Note**
+For Bun versions below v1.0.17, you must add `supabase` as a [trusted dependency](https://bun.sh/guides/install/trusted) before running `bun add -D supabase`.
 
-## 📄 License
+<details>
+  <summary><b>macOS</b></summary>
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+  Available via [Homebrew](https://brew.sh). To install:
 
-## 🆘 Support
+  ```sh
+  brew install supabase/tap/supabase
+  ```
 
-For support and questions, please open an issue in the GitHub repository.
+  To install the beta release channel:
+  
+  ```sh
+  brew install supabase/tap/supabase-beta
+  brew link --overwrite supabase-beta
+  ```
+  
+  To upgrade:
+
+  ```sh
+  brew upgrade supabase
+  ```
+</details>
+
+<details>
+  <summary><b>Windows</b></summary>
+
+  Available via [Scoop](https://scoop.sh). To install:
+
+  ```powershell
+  scoop bucket add supabase https://github.com/supabase/scoop-bucket.git
+  scoop install supabase
+  ```
+
+  To upgrade:
+
+  ```powershell
+  scoop update supabase
+  ```
+</details>
+
+<details>
+  <summary><b>Linux</b></summary>
+
+  Available via [Homebrew](https://brew.sh) and Linux packages.
+
+  #### via Homebrew
+
+  To install:
+
+  ```sh
+  brew install supabase/tap/supabase
+  ```
+
+  To upgrade:
+
+  ```sh
+  brew upgrade supabase
+  ```
+
+  #### via Linux packages
+
+  Linux packages are provided in [Releases](https://github.com/supabase/cli/releases). To install, download the `.apk`/`.deb`/`.rpm`/`.pkg.tar.zst` file depending on your package manager and run the respective commands.
+
+  ```sh
+  sudo apk add --allow-untrusted <...>.apk
+  ```
+
+  ```sh
+  sudo dpkg -i <...>.deb
+  ```
+
+  ```sh
+  sudo rpm -i <...>.rpm
+  ```
+
+  ```sh
+  sudo pacman -U <...>.pkg.tar.zst
+  ```
+</details>
+
+<details>
+  <summary><b>Other Platforms</b></summary>
+
+  You can also install the CLI via [go modules](https://go.dev/ref/mod#go-install) without the help of package managers.
+
+  ```sh
+  go install github.com/supabase/cli@latest
+  ```
+
+  Add a symlink to the binary in `$PATH` for easier access:
+
+  ```sh
+  ln -s "$(go env GOPATH)/bin/cli" /usr/bin/supabase
+  ```
+
+  This works on other non-standard Linux distros.
+</details>
+
+<details>
+  <summary><b>Community Maintained Packages</b></summary>
+
+  Available via [pkgx](https://pkgx.sh/). Package script [here](https://github.com/pkgxdev/pantry/blob/main/projects/supabase.com/cli/package.yml).
+  To install in your working directory:
+
+  ```bash
+  pkgx install supabase
+  ```
+
+  Available via [Nixpkgs](https://nixos.org/). Package script [here](https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/tools/supabase-cli/default.nix).
+</details>
+
+### Run the CLI
+
+```bash
+supabase bootstrap
+```
+
+Or using npx:
+
+```bash
+npx supabase bootstrap
+```
+
+The bootstrap command will guide you through the process of setting up a Supabase project using one of the [starter](https://github.com/supabase-community/supabase-samples/blob/main/samples.json) templates.
+
+## Docs
+
+Command & config reference can be found [here](https://supabase.com/docs/reference/cli/about).
+
+## Breaking changes
+
+We follow semantic versioning for changes that directly impact CLI commands, flags, and configurations.
+
+However, due to dependencies on other service images, we cannot guarantee that schema migrations, seed.sql, and generated types will always work for the same CLI major version. If you need such guarantees, we encourage you to pin a specific version of CLI in package.json.
+
+## Developing
+
+To run from source:
+
+```sh
+# Go >= 1.22
+go run . help
+```
